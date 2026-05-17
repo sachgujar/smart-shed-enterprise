@@ -1,0 +1,132 @@
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+
+}
+
+.header-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+
+}
+
+.filter-bar {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 12px;
+    padding: 12px 14px !important;
+    border-radius: 12px !important;
+    margin-bottom: 16px;
+
+    .search { width: 100% }
+
+    mat-form-field {
+        width: 100%;
+    }
+}
+
+.animal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+
+.animal-tile {
+    display: flex !important;
+    flex-direction: row;
+    gap: 2px;
+    padding: 12px !important;
+    border-radius: 12px !important;
+
+    img {
+        width: 154px;
+        height: 120px;
+        border-radius: 10px;
+        object-fit: cover;
+        background: #f1f5f9;
+    }
+}
+
+.tile-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.tile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sub {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.status {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: #e2e8f0;
+    color: #334155;
+    letter-spacing: 0.5px;
+
+    &[data-status="ACTIVE"] { background: #dcfce7; color: #166534; }
+    &[data-status="PREGNANT"] { background: #fce7f3; color: #9d174d; }
+    &[data-status="LACTATING"] { background: #cffafe; color: #155e75; }
+    &[data-status="DRY"] { background: #fef9c3; color: #854d0e; }
+    &[data-status="SICK"] { background: #fee2e2; color: #991b1b; }
+    &[data-status="DEAD"] { background: #e5e7eb; color: #374151; }
+}
+
+.metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    font-size: 12px;
+    color: #475569;
+
+    mat-icon {
+        font-size: 14px;
+        width: 14px;
+        height: 14px;
+        vertical-align: middle;
+        margin-right: 2px;
+
+    }
+}
+
+.details-btn {
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+.empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: #64748b;
+}
+
+@media (max-width: 768px) {
+    .filter-bar { grid-template-columns: 1fr;}
+
+    .animal-tile {
+        flex-direction: column;
+        img {
+            width: 100%;
+            height: 160px;
+        }
+    }
+}

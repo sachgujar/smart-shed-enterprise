@@ -1,0 +1,86 @@
+<header class="list-header">
+  <div>
+    <h2 class="page-title">Animal Regristry</h2>
+    <p class="muted"> {{filtered().length | number }} of {{ animals().length | number }}  animals </p>
+  </div>
+  <div class="header-actions">
+    <button mat-stroked-button (click)="resetFilters()"> 
+        <mat-icon>refresh</mat-icon> Reset
+    </button>
+    <button mat-flat-button color="primary" (click)="openAddDialog()">
+        <mat-icon>add</mat-icon> Add Animal
+    </button>
+  </div>
+</header>
+
+<mat-card class="filter-bar">
+    <mat-form-field appearance="outline" class="search">
+        <mat-label>Search by tag, breed, owner, shed</mat-label>
+        <input matInput (ngModel)="search()" (ngModelChange)="search.set($event); pageIndex.set(0)" />
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select matInput (ngModel)="statusFilter()" (ngModelChange)="statusFilter.set($event); pageIndex.set(0)">
+            <mat-option value="ALL">All</mat-option>
+            @for(s of statuses; track s) {
+                <mat-option [value]="s">{{ s }}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+    <mat-label>Breed</mat-label>
+    <mat-select (ngModel)="breedFilter()" (ngModelChange)="breedFilter.set($event); pageIndex.set(0)">
+        <mat-option value="ALL">All</mat-option>
+        @for(b of breeds(); track b) {
+            <mat-option [value]="b">{{ b }}</mat-option>
+        }
+    </mat-select>
+    </mat-form-field>
+</mat-card>
+
+<div class="animal-grid">
+    @for(animal of paged(); track animal.id) {
+        <mat-card class="animal-tile">
+            <img [src]="animal.photoUrl || 'assets/images/indian-murrha.png'" [alt]="animal.tagNumber" />
+
+            <div class="tile-body">
+                <div class="tile-header">
+                    <strong>{{ animal.tagNumber }}</strong>
+                    <span class="status" [attr.data-status]="animal.status">{{ animal.status }}</span>
+                </div>
+
+                <div class="sub">
+                    {{ animal.breed }} - {{ animal.gender }}
+                </div>
+
+                <div class="metrics">
+                    <span><mat-icon>cake</mat-icon> {{ animal.dob }}</span>
+                    <span><mat-icon>monitor_weight</mat-icon> {{ animal.weightKg }} kg</span>
+
+                    @if(animal.dailyMilkYieldLiters){
+                        <span><mat-icon>water_drop</mat-icon> {{ animal.dailyMilkYieldLiters }} L/day</span>
+                    } 
+                    @if(animal.expectedCalvingDate){
+                        <span><mat-icon>event</mat-icon>Calving {{ animal.expectedCalvingDate }} </span>
+                    }  
+                    <span><mat-icon>home</mat-icon> {{ animal.shed }}  </span>              
+                </div>
+
+                <a mat-stroked-button color="primary" [routerLink]="['/animals', animal.id]" class="details-btn">
+                    
+                    View Details
+                </a>
+            </div>
+        </mat-card>
+    } @empty {
+        <div class="empty"> No animals match the current filters.</div>
+    }
+</div>
+
+<mat-paginator [length]="filtered().length" [pageSize]="pageSize()" [pageIndex]="pageIndex()"
+[pageSizeOptions]="[6,12,24,48]"
+    (page)="onPage($event)" showFirstLastButtons>
+    </mat-paginator>
