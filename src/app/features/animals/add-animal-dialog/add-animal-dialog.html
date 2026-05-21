@@ -1,0 +1,90 @@
+<h2 mat-dialog-title>
+    <mat-icon> {{isEdit ? 'edit' : 'add_circle' }} </mat-icon>
+    {{isEdit ? 'Edit Animal Details' : 'Add Animal Details'}}
+</h2>
+
+<form [formGroup]="animalForm" mat-dialog-content class="form-grid">
+
+    <mat-form-field appearance="outline">
+        <mat-label>Tag Number *</mat-label>
+        <input matInput formControlName="tagNumber" placeholder="BUF-1234"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Name (optional)</mat-label>
+        <input matInput formControlName="name" placeholder="Enter name"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender">
+            <mat-option value="MALE">Male</mat-option>
+            <mat-option value="FEMALE">Female</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Breed</mat-label>
+        <mat-select formControlName="breed">
+            @for(b of breeds; track b) {
+                <mat-option [value]="b">{{ b }}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput formControlName="dob" [matDatepicker]="dobPicker" />
+        <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
+        <mat-datepicker #dobPicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Weight (kg)</mat-label>
+        <input matInput formControlName="weightKg" type="number" placeholder="Enter weight"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+            @for(s of statuses; track s) {
+                <mat-option [value]="s">{{ s }}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" >
+        <mat-label>Shed</mat-label>
+        <mat-select formControlName="shed">
+            @for(s of sheds; track s) {
+                <mat-option [value]="s">{{ s }}</mat-option>
+            }
+            </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Owner</mat-label>
+        <input matInput formControlName="owner" placeholder="Enter owner name"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Mother Tag</mat-label>
+        <input matInput formControlName="motherTag" placeholder="Enter mother tag" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Sire / Father Tag</mat-label>
+        <input matInput formControlName="fatherTag" placeholder="Enter father tag" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full">
+        <mat-label>Notes</mat-label>
+        <textarea matInput formControlName="notes" roes="2" placeholder="Additional details about the animal"></textarea>
+    </mat-form-field>
+</form>
+
+<mat-dialog-actions align="end">
+    <button mat-stroked-button mat-dialog-close>Cancel</button>
+    <button mat-flat-button color="primary" (click)="save()" [disabled]="animalForm.invalid">
+        <mat-icon>save</mat-icon>{{isEdit ? 'Update' : 'Add'}}</button>
+</mat-dialog-actions>

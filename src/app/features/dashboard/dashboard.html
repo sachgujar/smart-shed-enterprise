@@ -1,0 +1,58 @@
+
+<div class="dashboard">
+    <header class="header">
+        <div>
+            <h2 class="page-title">Farm Dashboard</h2>
+            <p class="mated">Snapshot of your herd's health and productivity</p>
+        </div>
+        <a mat-flat-button color="primary" routerLink="/animals">
+            <mat-icon>list_alt</mat-icon>
+            View All Animals
+        </a>
+    </header>
+    <section class="kpi-grid">
+        @for (k of kpis(); track k.label){
+            <mat-card class="kpi-card" [attr.data-tint]="k.tint">
+                <div class="kpi-icon"><mat-icon> {{ k.icon}}</mat-icon></div>
+                <div class="kpi-body">
+                    <div class="kpi-value">{{ k.value | number }}</div>
+                    <div class="kpi-label">{{ k.label }}</div>
+                </div>
+            </mat-card>
+        }
+    </section>
+
+<section class="two-col">
+    <mat-card class="panel">
+        <h3>Status Breakdown</h3>
+        <div class="ststus-list">
+            @for (s of statusBreakdown() | keyvalue; track s.key) {
+                <div class="status-row">
+                    <span class="status-tag"  [attr.data-status]="s.key">{{ s.key }}</span>
+                    <mat-progress-bar mode="determinate"
+                    [value]="total() ? (+s.value / total()) * 100 : 0"></mat-progress-bar>
+                    <span class="status-count">{{ s.value}}</span>
+                </div>
+            }
+        </div>
+    </mat-card>
+    <mat-card class="panel">
+        <h3>Breed Distribution</h3>
+        <table class="breed-table">
+            <thead>
+                <tr><th>Breed</th><th>Count</th><th>%</th></tr>
+            </thead>
+            <tbody>
+                @for (b of breedRows(); track b.breed) {
+                    <tr>
+                        <td>{{ b.breed }}</td>
+                        <td>{{ b.count }}</td>
+                        <td>{{ b.pct }}%</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </mat-card>
+
+</section>
+</div>

@@ -2,7 +2,7 @@ export type  AnimalStatus = 'ACTIVE' | 'PREGNANT' | 'LACTATING' | 'SICK' | 'DEAD
 export type AnimalGender = 'MALE' | 'FEMALE';
 
 export interface Animal {
-  id: number;
+  animalId: number;
   tagNumber: string;
   name?: string;
   gender: AnimalGender;

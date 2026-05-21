@@ -42,9 +42,9 @@
 </mat-card>
 
 <div class="animal-grid">
-    @for(animal of paged(); track animal.id) {
+    @for(animal of paged(); track animal.animalId) {
         <mat-card class="animal-tile">
-            <img [src]="animal.photoUrl || 'assets/images/indian-murrha.png'" [alt]="animal.tagNumber" />
+            <!-- <img [src]="animal.photoUrl || 'assets/images/indian-murrha.png'" [alt]="animal.tagNumber" /> -->
 
             <div class="tile-body">
                 <div class="tile-header">
@@ -69,10 +69,10 @@
                     <span><mat-icon>home</mat-icon> {{ animal.shed }}  </span>              
                 </div>
 
-                <a mat-stroked-button color="primary" [routerLink]="['/animals', animal.id]" class="details-btn">
+                <a mat-stroked-button color="primary" [routerLink]="['/animals', animal.animalId]" class="details-btn">
                     
-                    View Details
-                </a>
+                    View Details {{animal.animalId}}
+                </a> 
             </div>
         </mat-card>
     } @empty {

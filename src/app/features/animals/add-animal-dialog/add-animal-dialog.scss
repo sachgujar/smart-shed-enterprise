@@ -1,0 +1,37 @@
+:host {
+    display: block;
+    min-width: 520px;
+}
+
+h2[mat-dialog-title] {
+    display: fiex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 4px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 14px;
+    padding-top: 8px !important;
+
+
+    .full {
+        grid-column: 1 / -1;
+    }
+
+    mat-form-field {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    :host {
+        min-width: unset;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}

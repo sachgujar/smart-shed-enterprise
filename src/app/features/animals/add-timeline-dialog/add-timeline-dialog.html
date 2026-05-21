@@ -1,0 +1,55 @@
+<h2 mat-dialog-title> {{ isEdit ? 'Edit Health Record' : 'Add Health Timeline Entry'}} </h2>
+
+<form [formGroup]="form" mat-dialog-content>
+
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type">
+            <mat-option value="VACCINATION">Vaccination</mat-option>
+            <mat-option value="TREATMENT">Treatment</mat-option>
+            <mat-option value="CHECKUP">Checkup</mat-option>
+            <mat-option value="INSEMINATION">Insemination</mat-option>
+            <mat-option value="PREGNACNY_CONFIRMED">Pregnancy Confirmed</mat-option>
+            <mat-option value="BIRTH">Birth</mat-option>
+            <mat-option value="CALF_DEATH">Calf Death</mat-option>
+            <mat-option value="DEATH">Death</mat-option>
+            <mat-option value="MILK_RECORD">Milk Record</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+     <mat-form-field appearance="outline">
+        <mat-label>Date</mat-label>
+        <input matInput formControlName="date" [matDatepicker]="datePicker" />
+        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+        <mat-datepicker #datePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput rows="3" formControlName="description" placeholder="e.g. FMD vaccine first dose">
+        </textarea>        
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Doctor</mat-label>
+        <input matInput formControlName="doctor" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Dose</mat-label>
+        <input matInput formControlName="dose" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Outcome</mat-label>
+        <input matInput formControlName="outcome" />
+    </mat-form-field>
+
+</form>
+
+<mat-dialog-actions align="end">
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-raised-button (click)="save()">
+        {{ isEdit ? 'Update' : 'Save'}}
+    </button>
+</mat-dialog-actions>

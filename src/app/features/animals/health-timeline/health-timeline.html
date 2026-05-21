@@ -1,0 +1,33 @@
+<div class="timeline-actions">
+    <button mat-raised-button color="primary" (click)="openAddDialog()">
+        <mat-icon>add</mat-icon> Add Entry
+    </button>
+</div>
+@if (records().length) {
+<div class="timeline">
+    @for (r of records(); track r.id){
+    <div class="row" [attr.data-type]="r.healthEventType">
+        <div class="marker">
+            <mat-icon>{{ iconFor(r.healthEventType)}}</mat-icon>
+        </div>
+        <div class="content">
+            <div class="head">
+                <span class="type">{{ r.healthEventType.replaceAll('_',' ')}}</span>
+                <span class="date">{{ r.date}}</span>
+                <button mat-icon-button class="edit-btn" (click)="openEditDialog(r)" matTooltip="Edit">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </div>
+            <div class="desc">{{ r.description}}</div>
+            <div class="meta">
+                @if(r.dose){<span><mat-icon>medication</mat-icon>{{ r.dose }} </span> }
+                @if(r.outcome) { <span><mat-icon>flag</mat-icon> {{ r.outcome }}</span>}
+                @if( r.doctor) { <span><mat-icon>person</mat-icon> {{ r.doctor }}</span>}
+            </div>
+        </div>
+    </div>
+    }
+</div>
+} @else {
+<p class="muted">No health records for this animal.</p>
+}

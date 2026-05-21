@@ -1,0 +1,68 @@
+@if (animal(); as a) {
+    <a mat-button routerLink="/animals" class="back-btn">
+        <mat-icon>arrow_back</mat-icon> Back to Animals
+    </a>
+
+    <div class="profile-layout">
+        <mat-card class="profile-summary">
+            <!-- <img [src]="a.photoUrl || 'assets/images/indian-murrha.png'" [alt]="a.tagNumber" /> -->
+            <img [src]="'assets/images/indian-murrha.png'" [alt]="a.tagNumber" />
+
+            <h2> {{ a.tagNumber }} </h2>
+            @if (a.name) { <p class="name"> {{ a.name}} </p> }
+
+            <button mat-stroked-button class="edit-animal-btn" (click)="openEditDialog(a)">
+                <mat-icon>edit</mat-icon> Edit Details
+            </button>
+
+            <div class="badges">
+                <span>{{ a.breed }}</span>
+                <span>{{ a.gender }}</span>
+                <span class="status" [attr.data-status]="a.status">{{ a.status }}</span>
+            </div>
+
+            <ul class="meta-list">
+                <li><mat-icon>cake</mat-icon><span>DOB</span><strong>{{ a.dob }}</strong></li>
+                <li><mat-icon>monitor_weight</mat-icon><span>Weight</span><strong>{{ a.weightKg }} kg</strong></li>
+                <li><mat-icon>home</mat-icon><span>Shed</span><strong>{{ a.shed }}</strong></li>
+                <li><mat-icon>person</mat-icon><span>Owner</span><strong>{{ a.owner }}</strong></li>
+                @if (a.dailyMilkYieldLiters) {
+                    <li><mat-icon>water_drop</mat-icon><span>Milk</span><strong>{{ a.dailyMilkYieldLiters }} L/Day</strong></li>
+                }
+                <li><mat-icon>vaccines</mat-icon><span>Last Vac.</span><strong>{{ a.lastVaccinationDate }}</strong></li>
+                <li><mat-icon>event</mat-icon><span>Next Vac.</span><strong>{{ a.nextVaccinationDate }}</strong></li>
+            </ul>
+        </mat-card>
+
+        <mat-card class="profile-layout">
+                <mat-tab-group animationDuration="200ms">
+                    <mat-tab label="Summary">
+                        <div class="tab-body">
+                            <h3>Quick Summary</h3>
+                            <div class="kv-grid">
+                                <div><span>Tag</span><strong>{{ a.tagNumber }}</strong></div>
+                                <div><span>Breed</span><strong>{{ a.breed }}</strong></div>
+                                <div><span>Gender</span><strong>{{ a.gender }}</strong></div>
+                                <div><span>Status</span><strong>{{ a.status }}</strong></div>
+                                <div><span>Mother</span><strong>{{ a.motherTag ?? '-' }}</strong></div>
+                                <div><span>Sire</span><strong>{{ a.fatherTag ?? '-' }}</strong></div>
+                                <div><span>Last Insemination</span><strong>{{ a.lastInseminationDate ?? '-' }}</strong></div>
+                                <div><span>Last Calving</span><strong>{{ a.lastCalvingDate ?? '-' }}</strong></div>
+                                <div><span>Expected Calving</span><strong>{{ a.expectedCalvingDate ?? '-' }}</strong></div>
+                            </div>
+                        </div>
+                    </mat-tab>
+
+                    <mat-tab label="Health Timeline">
+                        <div class="tab-body">
+                            <app-health-timeline [animalId]="a.animalId"></app-health-timeline>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+            </mat-card>
+
+    </div>
+} @else {
+    <p class ="muted">Loading animal...</p>
+}
+    

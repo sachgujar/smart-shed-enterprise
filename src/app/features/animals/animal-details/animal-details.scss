@@ -1,0 +1,257 @@
+.back-btn {
+    margin-bottom: 12px;
+}
+
+.edit-animal-btn {
+    margin: 8px 0 12px;
+
+    mat-icon {
+        margin-right: 4px;
+        font-size: 18px;
+    }
+}
+
+.profile-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 18px;
+    align-items: start;
+}
+
+.profile-summary {
+    padding: 18px !important;
+    border-radius: 14px !important;
+    text-align: center;
+
+    .img {
+        width: 100%;
+        max-height: 220px;
+        border-radius: 12px;
+        object-fit: cover;
+        background: #f1f5f9;
+        margin-bottom: 12px;
+    }
+
+    h2 {
+        margin: 4px 0 2px;
+        font-size: 22px;
+    }
+
+    .name {
+        margin: 0 0 12px;
+        color: #64748b;
+        font-style: italic;
+    }
+}
+
+.badges {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 12px 0 16px;
+    flex-wrap: wrap;
+
+    span {
+        background: #e2e8f0;
+        color: #334155;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+
+    }
+
+    .status {
+        &[data-status="ACTIVE"] {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        &[data-status="PREGNANT"] {
+            background: #fce7f3;
+            color: #9d174d;
+        }
+
+        &[data-status="LACTATING"] {
+            background: #cffafe;
+            color: #155e75;
+        }
+
+        &[data-status="DRY"] {
+            background: #fef9c3;
+            color: #854d0e;
+        }
+
+        &[data-status="SICK"] {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        &[data-status="DEAD"] {
+            background: #e5e7eb;
+            color: #374151;
+        }
+    }
+}
+
+.meta-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    li {
+        display: flex;
+        grid-template-columns: 24px 1fr auto;
+        gap: 10px;
+        align-items: center;
+        padding: 6px 0;
+        border-bottom: 1px dashed #e2e8f0;
+        font-size: 13px;
+
+        span {
+            color: #64748b;
+        }
+
+        strong {
+            color: #0f172a;
+        }
+
+        mat-icon {
+            font-size: 18px;
+            width: 18px;
+            height: 18px;
+            color: #64748b;
+        }
+    }
+}
+
+.profile-details {
+    padding: 6px !important;
+    border-radius: 14px !important;
+    min-height: 460px;
+}
+
+.tab-body {
+    padding: 18px;
+
+    h3 {
+        margin: 0 0 12px;
+        font-size: 16px;
+    }
+}
+
+.kv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px 1fr));
+    gap: 10px;
+
+    div {
+        background: #f8fafc;
+        border-radius: 8px;
+        padding: 10px 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+
+        span {
+            font-size: 11px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        strong {
+            font-size: 14px;
+            color: #0f172a;
+        }
+    }
+}
+
+.fert-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+
+    th,
+    td {
+        text-align: left;
+        padding: 8px 6px;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    th {
+        color: #64748b;
+        font-weight: 600;
+        font-size: 11px;
+        text-transform: uppercase;
+    }
+}
+
+.outcome {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 999px;
+
+    &[data-outcome="ALIVE"] {
+        background: #dcfce7;
+        color: #166534;
+    }
+
+    &[data-outcome="DIED"] {
+        background: #fee2e2;
+        color: #991b1b;
+    }
+
+    &[data-outcome="STILLBORN"] {
+        background: #e5e7eb;
+        color: #374151;
+    }
+}
+
+.lineage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    text-align: center;
+
+    .node {
+        background: #f8fafc;
+        border-radius: 12px;
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        span {
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        strong {
+            font-size: 16px;
+        }
+
+        &.self {
+            grid-column: 1 / -1;
+            background: #e0f2fe;
+            color: #075985;
+        }
+    }
+
+    .connector {
+        grid-column: 1 / -1;
+        height: 2px;
+        background: #cbd5e1;
+        margin: -4px 25%;
+    }
+}
+
+@media (max-width: 900px) {
+    .profile-layout {
+        grid-template-columns: 1fr;
+    }
+}

@@ -14,6 +14,7 @@ import { AnimalStatus } from '../../../core/models/animal';
 import { AnimalService } from  '../../../core/services/animal';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
+import { AddAnimalDialog } from '../add-animal-dialog/add-animal-dialog';
 
 @Component({
   selector: 'app-animal-list',
@@ -40,6 +41,8 @@ export class AnimalList implements OnInit {
 
   animals = this.service.animals;
 
+ 
+
   breeds = computed(() => Array.from(new Set(this.animals().map(a => a.breed))).sort());
 
   filtered = computed(() => {
@@ -65,6 +68,9 @@ export class AnimalList implements OnInit {
 
   ngOnInit() {
     this.service.loadAnimals();
+
+       console.log("animals===>", this.animals)
+
   }
 
   onPage(e: PageEvent){
@@ -77,9 +83,24 @@ export class AnimalList implements OnInit {
     this.statusFilter.set('ALL');
     this.breedFilter.set('ALL');
     this.pageIndex.set(0);
+
+    console.log("Reset resetFiltersn")
   }
 
   openAddDialog(){
+    const ref = this.dialog.open(AddAnimalDialog,{
+      width: '640px',
+      maxWidth: '95vw',
+      autoFocus: true
+    });
 
+    ref.afterClosed().subscribe(result => {
+      if(result) {
+        this.service.addAnimal(result).subscribe(animal => {
+          this.snack.open(`Animal ${animal.tagNumber} added successfully`, 'OK', { duration: 3000 });
+        });
+        this.pageIndex.set(0);
+      }
+    });
   }
 }
