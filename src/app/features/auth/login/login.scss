@@ -1,0 +1,74 @@
+:host {
+    display: block;
+    height: 100%;
+}
+
+.login-page {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background:
+      radial-gradient(1200px 600px at 10% -10% #dbeafe 0%, transparent 60%),
+      radial-gradient(800px 400px at 90% 110%, #e0f2fe 0%, transparent 60%),
+      #f8fafc;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 32px !important;
+    border-radius: 18px !important;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08) !important;
+}
+
+.brand {
+    text-align: center;
+    margin-bottom: 24px;
+
+    .logo { font-size: 48px; }
+
+    h1 {
+        margin: 8px 0 4px;
+        font-size: 22px;
+        color: #0f172a;
+    }
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.submit-btn {
+    height: 44px;
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    ::ng-deep .mdc-circular-progress_indeterminate-circle-graphic {
+        stroke: #fff;
+    }
+}
+
+.error {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #fee2e2;
+    color: #991b1b;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    margin-bottom: 6px;
+
+    mat-icon { font-size: 18px; width: 8px; height: 18px; }
+}
+
+.hint {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 14px;
+}

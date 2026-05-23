@@ -8,7 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterOutlet, RouterLinkWithHref, RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
 import { filter, map, startWith } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Auth } from './core/services/auth';
+import { AuthService } from './core/services/auth';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 @Component({
@@ -21,7 +21,7 @@ export class App {
   // protected readonly title = signal('smart-shed-enterprise');
   private breakpointObserver = inject(BreakpointObserver);
   private router = inject(Router);
-  auth = inject(Auth);
+  auth = inject(AuthService);
   isHandset = toSignal(this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet]).pipe(map(result => result.matches)),
   { initialValue: false}
   );

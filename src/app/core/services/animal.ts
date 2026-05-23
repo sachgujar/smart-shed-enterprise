@@ -6,7 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { HealthRecord } from '../models/health-record.model';
 
 
-const API_BASE = 'http://localhost:8080/api';
+// const API_BASE = 'http://localhost:8080/api';
+const API_BASE = 'https://smart-shed-enterprise-services.onrender.com/api';
 
 @Injectable({
   providedIn: 'root',
@@ -48,7 +49,7 @@ export class AnimalService {
    readonly vaccinationDueCount = computed(() => {
     const today = new Date().toISOString().slice(0, 10);
 
-    return this._animals().filter(a => (a.nextVaccinationDate ?? '') <= today && a.status == 'DEAD').length;
+    return this._animals().filter(a => (a.nextVaccinationDate ?? '') <= today && a.status !== 'DEAD').length;
 
   })
 

@@ -1,0 +1,50 @@
+<div class="login-page">
+    <mat-card class="login-card">
+        <div class="brand">
+            <span class="logo"></span>
+            <h1>Smart Shed Enterprise</h1>
+            <p class="muted">Sing in to manage your herd</p>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="submit()" class="login-form">
+            <mat-form-field appearance="outline">
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username" autocomplete="username" />
+                <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput
+                [type]="hidePassword() ? 'password' : 'text'"
+                formControlName="password"
+                autocomplete="current-password" />
+                <button mat-icon-button matSuffix type="button"
+                (click)="hidePassword.set(hidePassword())"
+                [attr.aria-label]="'Toggle password visibility'">
+            <mat-icon>{{ hidePassword() ? 'visibility_off' :'visibility' }}</mat-icon>
+        </button>
+            </mat-form-field>
+
+            @if (error()) {
+                <div class="error">
+                    <mat-icon>error</mat-icon>  {{ error() }}
+                </div>
+            }
+
+            <button mat-flat-button color="primary" type="submit"
+            class="submit-btn" [disabled]="loading() || form.invalid">
+            @if (loading()) {
+                <mat-spinner diameter="20"></mat-spinner>
+            } @else {
+                <span>Sign In</span>
+            }
+        </button>
+
+        <p class="hint muted">
+            Try <strong>admin / admin</strong>, <strong> / vet</strong>, or <strong>user
+            </strong>
+        </p>
+        </form>
+    </mat-card>
+</div>
