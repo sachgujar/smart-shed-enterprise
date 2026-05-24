@@ -16,13 +16,13 @@
 <mat-card class="filter-bar">
     <mat-form-field appearance="outline" class="search">
         <mat-label>Search by tag, breed, owner, shed</mat-label>
-        <input matInput (ngModel)="search()" (ngModelChange)="search.set($event); pageIndex.set(0)" />
+        <input matInput [ngModel]="search()" (ngModelChange)="search.set($event); pageIndex.set(0)" />
         <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
         <mat-label>Status</mat-label>
-        <mat-select matInput (ngModel)="statusFilter()" (ngModelChange)="statusFilter.set($event); pageIndex.set(0)">
+        <mat-select matInput [ngModel]="statusFilter()" (ngModelChange)="statusFilter.set($event); pageIndex.set(0)">
             <mat-option value="ALL">All</mat-option>
             @for(s of statuses; track s) {
                 <mat-option [value]="s">{{ s }}</mat-option>
@@ -32,7 +32,7 @@
 
     <mat-form-field appearance="outline">
     <mat-label>Breed</mat-label>
-    <mat-select (ngModel)="breedFilter()" (ngModelChange)="breedFilter.set($event); pageIndex.set(0)">
+    <mat-select [ngModel]="breedFilter()" (ngModelChange)="breedFilter.set($event); pageIndex.set(0)">
         <mat-option value="ALL">All</mat-option>
         @for(b of breeds(); track b) {
             <mat-option [value]="b">{{ b }}</mat-option>
@@ -71,7 +71,7 @@
 
                 <a mat-stroked-button color="primary" [routerLink]="['/animals', animal.animalId]" class="details-btn">
                     
-                    View Details {{animal.animalId}}
+                    View Details
                 </a> 
             </div>
         </mat-card>

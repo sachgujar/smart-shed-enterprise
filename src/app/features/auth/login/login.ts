@@ -34,20 +34,20 @@ export class Login {
   form = this.fb.nonNullable.group({
     username: ['admin', Validators.required],
     password: ['admin', Validators.required]
-});
-
-submit() {
-  if (this.form.invalid) return;
-  this.loading.set(true);
-  this.error.set(null);
-  const { username,password } = this.form.getRawValue();
-  this.auth.login(username, password).subscribe(user => {
-    if (user) {
-      this.router.navigate(['/dashboard']);
-    } else {
-      this.error.set('Invalid username or password');
-    }
   });
-}
+
+  submit() {
+    if (this.form.invalid) return;
+    this.loading.set(true);
+    this.error.set(null);
+    const { username, password } = this.form.getRawValue();
+    this.auth.login(username, password).subscribe(user => {
+      if (user) {
+        this.router.navigate(['/dashboard']);
+      } else {
+        this.error.set('Invalid username or password');
+      }
+    });
+  }
 
 }

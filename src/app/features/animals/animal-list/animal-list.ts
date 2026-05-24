@@ -41,8 +41,6 @@ export class AnimalList implements OnInit {
 
   animals = this.service.animals;
 
- 
-
   breeds = computed(() => Array.from(new Set(this.animals().map(a => a.breed))).sort());
 
   filtered = computed(() => {
@@ -53,10 +51,10 @@ export class AnimalList implements OnInit {
     return this.animals().filter(a => {
       if(status !== 'ALL' && a.status !== status) return false;
       if(breed !== 'ALL' && a.breed !== breed) return false;
-      if(q && (!a.tagNumber.toLowerCase().includes(q) ||
-              a.breed.toLowerCase().includes(q) ||
-              (a.owner ?? '').toLowerCase().includes(q) ||
-              (a.shed ?? '').toLowerCase().includes(q))) return false;
+      if(q && (!a.tagNumber.toLowerCase().includes(q) &&
+              !a.breed.toLowerCase().includes(q) &&
+              !(a.owner ?? '').toLowerCase().includes(q) &&
+              !(a.shed ?? '').toLowerCase().includes(q))) return false;
       return true;
     });
   });
@@ -68,9 +66,6 @@ export class AnimalList implements OnInit {
 
   ngOnInit() {
     this.service.loadAnimals();
-
-       console.log("animals===>", this.animals)
-
   }
 
   onPage(e: PageEvent){
@@ -83,8 +78,6 @@ export class AnimalList implements OnInit {
     this.statusFilter.set('ALL');
     this.breedFilter.set('ALL');
     this.pageIndex.set(0);
-
-    console.log("Reset resetFiltersn")
   }
 
   openAddDialog(){
